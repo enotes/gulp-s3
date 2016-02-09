@@ -13,7 +13,6 @@ module.exports = function (aws, options) {
   if (options.maxRetries) { aws.maxRetries = options.maxRetries; }
 
   var client = new Intimidate(aws);
-  var waitTime = 0;
   var regexGzip = /\.([a-z]{2,})\.gz$/i;
   var regexGeneral = /\.([a-z]{2,})$/i;
 
@@ -52,14 +51,14 @@ module.exports = function (aws, options) {
 
       headers['Content-Length'] = file.stat.size;
 
-      client.putBuffer(file.contents, uploadPath, headers, function(err, res, maxRetries) {
+      client.uploadBuffer(file.contents, uploadPath, headers, function(err, res, maxRetries) {
         if (err || res.statusCode !== 200) {
-            gutil.log(gutil.colors.red('[FAILED]', file.path + " -> " + uploadPath));
+            gutil.log(gutil.colors.red('[FAILED]', file.path + ' -> ' + uploadPath));
             if (options.maxRetries === maxRetries) {
                 process.exit(1);
             }
         } else {
-          gutil.log(gutil.colors.green('[SUCCESS]', file.path + " -> " + uploadPath));
+          gutil.log(gutil.colors.green('[SUCCESS]', file.path + ' -> ' + uploadPath));
           res.resume();
         }
       });
