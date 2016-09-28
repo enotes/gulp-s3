@@ -7,7 +7,7 @@
 First, install `@enotes/gulp-s3` as a development dependency:
 
 ```shell
-npm install --save-dev git@github.com:enotes/gulp-s3.git#v0.4.0
+npm i --save-dev git+ssh://git@github.com:enotes/gulp-s3.git#v0.4.1
 ```
 
 Setup your aws.json file
@@ -22,7 +22,7 @@ Setup your aws.json file
 
 Then, use it in your `gulpfile.js`:
 ```javascript
-const s3 = require("gulp-s3");
+const s3 = require("@enotes/gulp-s3");
 
 aws = JSON.parse(fs.readFileSync('./aws.json'));
 gulp.src("./dist/**")
@@ -54,7 +54,7 @@ Only upload files with .gz extension, additionally it will remove the .gz suffix
 
 ```javascript
 const gulp = require("gulp");
-const s3 = require("gulp-s3");
+const s3 = require("@enotes/gulp-s3");
 const gzip = require("gulp-gzip");
 const options = { gzippedOnly: true };
 
@@ -67,14 +67,14 @@ gulp.src("./dist/**")
 
 #### options.maxRetries
 
-Type: `Number` 
+Type: `Number`         
 Default: [3][Intimidate]
 
 The number of times to retry before failing.
 
 ```javascript
 const gulp = require("gulp");
-const s3 = require("gulp-s3");
+const s3 = require("@enotes/gulp-s3");
 const options = { maxRetries: 5 };
 
 gulp.src("./dist/**")
