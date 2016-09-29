@@ -51,7 +51,7 @@ module.exports = function (aws, options) {
 
       headers['Content-Length'] = file.stat.size;
 
-      client.uploadBuffer(file.contents, uploadPath, headers, function(err, res, maxRetries) {
+      client.uploadBuffer(file.contents, headers, uploadPath, function(err, res, maxRetries) {
         if (err || res.statusCode !== 200) {
             gutil.log(gutil.colors.red('[FAILED]', file.path + ' -> ' + uploadPath));
             if (options.maxRetries === maxRetries) {
