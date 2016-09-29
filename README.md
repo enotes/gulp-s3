@@ -7,7 +7,7 @@
 First, install `@enotes/gulp-s3` as a development dependency:
 
 ```shell
-npm i --save-dev git+ssh://git@github.com:enotes/gulp-s3.git#v0.4.1
+npm i --save-dev git+ssh://git@github.com:enotes/gulp-s3.git#v0.4.2
 ```
 
 Setup your aws.json file
